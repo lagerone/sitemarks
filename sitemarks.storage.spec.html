@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Jasmine SpecRunner</title>
+		<link type="text/css" rel="stylesheet" href="css/jasmine/jasmine.css"/>
+		<script src="scripts/jasmine/jasmine.js"> </script>
+		<script src="scripts/jasmine/jasmine-html.js"> </script>
+	</head>
+	<body>
+		
+		<script src="scripts/sitemarks.storage.js"></script>
+		<script src="scripts/sitemarks.storage.spec.js"></script>
+		<script>
+			(function (window, undefined) {
+				var j = jasmine.getEnv();
+				j.addReporter(new jasmine.HtmlReporter());
+				j.addReporter(new jasmine.TrivialReporter());
+				j.execute();
+			})(window);
+		</script>
+	</body>
+</html>
