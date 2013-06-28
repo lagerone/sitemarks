@@ -118,6 +118,16 @@
 
 		title.appendChild(lagr);
 
+		var close = document.createElement('a');
+		close.onclick = closeClickHandler;
+		var closes = close.style;
+		closes.float = 'right';
+		closes.cursor = 'pointer';
+		var closeText = document.createTextNode('X');
+		close.appendChild(closeText);
+
+		title.appendChild(close);
+
 		container.appendChild(title);
 
 		var btn = document.createElement('button'),
@@ -167,6 +177,12 @@
 		sitemarks.storage.removeItemFromData(data, { url: event.target.href });
 		sitemarks.storage.addToStorage(data);
 		refreshItemList();
+	}
+
+	function closeClickHandler(event) {
+		event.preventDefault();
+		container = document.getElementById(containerId);
+		container.style.display = 'none';
 	}
 
 	function refreshItemList() {
