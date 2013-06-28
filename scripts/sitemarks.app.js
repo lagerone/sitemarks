@@ -44,6 +44,7 @@
 		items.forEach(function (i) {
 			li = document.createElement('li');
 			ls = li.style;
+			ls.overflow = 'hidden';
 			ls.lineHeight = '18px';
 			ls.margin = '0';
 			ls.padding = '3px 0';
