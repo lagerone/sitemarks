@@ -6,4 +6,4 @@ SiteMarks is a bookmarklet that lets you persistantly store links to pages from 
 Installation
 -
 
-Visit [lagr.se](http://lagr.se).
+Visit [lagr.se](http://lagr.se) and drag the SiteMarks button to your bookmarks toolbar. Click the bookmarklet to toggle the SiteMarks UI.
