@@ -1,0 +1,17 @@
+{
+  "name": "sitemarks",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lagerone/sitemarks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lagerone/sitemarks/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-jasmine": "~0.5.1"
+  }
+}
