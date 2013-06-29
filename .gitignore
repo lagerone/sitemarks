@@ -32,3 +32,5 @@ Packages/
 !skeletons/vsix/DurandalMvcSpaTemplateVsix/packages/
 !build.bat
 !*.ps1
+
+node_modules
