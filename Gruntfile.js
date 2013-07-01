@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 		uglify: {
 			all: {
 				files: {
-					'build/sitemarks.merged.js': ['scripts/sitemarks.app.js', 'script/sitemarks.storage.js']
+					'build/sitemarks.merged.js': ['script/sitemarks.storage.js', 'scripts/sitemarks.app.js']
 				}
 			}
 		},
