@@ -94,7 +94,7 @@
 	oTitle.append(oClose);
 	oContainer.append(oTitle);
 	oContainer.append(oBtn);
-	console.dir(storage);
+
 	var data = storage.getFromStorage(),
 		list;
 
