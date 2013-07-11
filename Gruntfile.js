@@ -9,16 +9,16 @@ module.exports = function(grunt) {
 		uglify: {
 			all: {
 				files: {
-					'build/sitemarks.merged.js': ['script/sitemarks.storage.js', 'scripts/sitemarks.app.js']
+					'build/sitemarks.merged.js': ['scripts/sitemarks.storage.js', 'scripts/sitemarks.oink.js', 'scripts/sitemarks.app.js']
 				}
 			}
 		},
 
 		jasmine: {
 			all: {
-				src: 'scripts/sitemarks.storage.js',
+				src: ['scripts/sitemarks.storage.js', 'scripts/sitemarks.oink.js'],
 				options: {
-					specs: 'scripts/sitemarks.storage.spec.js'
+					specs: 'scripts/*.spec.js'
 				}
 			}
 		}
