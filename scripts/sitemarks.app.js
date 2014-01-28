@@ -23,10 +23,10 @@
 		position: 'fixed',
 		top: 0,
 		left: '10px',
-		width: '180px',
+		width: '200px',
 		zIndex: '9999',
 		backgroundColor: 'rgba(0,0,0,0.7)',
-		padding: '12px 12px 16px 12px',
+		padding: '12px 8px 16px 8px',
 		textAlign: 'left',
 		fontSize: '12px',
 		fontFamily: 'Verdana, Arial, sans-serif',
@@ -84,7 +84,8 @@
 		var item, data, ul;
 		item = {
 			url: window.location.href,
-			title: getCurrentTitle()
+			title: getCurrentTitle(),
+			dateAdded: getFormattedDate()
 		};
 		addItem(item);
 		refreshItemList();
@@ -110,6 +111,8 @@
 		if (!items.length) return undefined;
 
 		var oU = o('<ul>').css({
+					maxHeight: '350px',
+		overflow: 'auto',
 			margin: 0,
 			padding: 0,
 			listStyleType: 'none'
@@ -118,6 +121,7 @@
 		});
 
 		var oLi, oRemove, oA;
+		items.sort(itemSortByTitle);
 		items.forEach(function (i) {
 			oLi = o('<li>').css({
 				overflow: 'hidden',
@@ -136,7 +140,8 @@
 				backgroundColor: 'rgb(202, 60, 60)',
 				textDecoration: 'none'
 			}).attr({
-				href: i.url
+				href: i.url,
+				title: 'Delete this item'
 			}).text('x')
 			.click(function (event) {
 				event.preventDefault();
@@ -146,11 +151,14 @@
 				refreshItemList();
 			});
 
+			var dateAdded = 'Added: ';
+			dateAdded += (i.dateAdded) ? i.dateAdded : 'unknown';
 			oA = o('<a>').css({
 				color: '#ccc',
 				textDecoration: 'none'
 			}).attr({
-				href: i.url
+				href: i.url,
+				title: dateAdded
 			}).text(' ' + i.title);
 
 			oLi.append(oRemove);
@@ -161,7 +169,7 @@
 		return oU;
 	}
 
-	function refreshItemList() {
+	function refreshItemList () {
 		var data, ul;
 		removeElementById(ns);
 		data = storage.getFromStorage();
@@ -169,21 +177,41 @@
 		if (ul) oContainer.append(ul);
 	}
 
-	function addItem(item) {
+	function addItem (item) {
 		var data = storage.getFromStorage();
 		storage.addItemToData(data, item);
 		storage.addToStorage(data);
 	}
 
-	function getCurrentTitle() {
+	function getCurrentTitle () {
 		var t = document.getElementsByTagName('title')[0];
-		if (t) return t.text || 'No title';
+		if (t) {
+			return t.text.trim() || 'No title';
+		}
 		return 'No title';
 	}
 
-	function removeElementById(id) {
+	function removeElementById (id) {
 		var el = document.getElementById(id);
 		if (el) el.parentNode.removeChild(el);
+	}
+
+	function getFormattedDate () {
+		var d = new Date(),
+			month = d.getMonth()+1 + '';
+		if (month.length === 1) {
+			month = '0' + month;
+		}
+		return [d.getFullYear(), month, d.getDate()].join('-');
+	}
+
+	function itemSortByTitle (a, b) {
+		if (a.title > b.title)
+			return 1;
+		if (a.title < b.title)
+			return -1;
+		// a must be equal to b
+		return 0;
 	}
 
 })(window, window.sitemarks.storage, window.sitemarks.oink);
