@@ -5,13 +5,14 @@
 	<title>SiteMarks Demo - I am a very long row for testing long rows, with.an.even.longer.row.without.any.spaces</title>
 </head>
 <body>
-
+	
+	<script src="scripts/sitemarks.storage.js" id="sitemarks-storage"></script>
+	<script src="scripts/sitemarks.oink.js" id="sitemarks-oink"></script>
 	<script>
 		(function sitemarksWrapper () {
 
 			appendFile('css/sitemarks.min.css', 'sitemarks-styles', 'css');
-			appendFile('scripts/sitemarks.storage.js', 'sitemarks-storage', 'js');
-			appendFile('scripts/sitemarks.oink.js', 'sitemarks-oink', 'js');
+
 			appendFile('scripts/sitemarks.app.js', 'sitemarks-app', 'js');
 
 			// appendFile('build/sitemarks.merged.js', 'sitemarks-app-build', 'js');

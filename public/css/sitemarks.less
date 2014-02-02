@@ -1,8 +1,53 @@
-body {
-	background-color: #000;
-}
-
 #sitemarks-container {
-	width: 500px;
-	background-color: #000;
+	position: fixed;
+	top: 0;
+	left: 10px;
+	width: 200px;
+	z-index: 9999;
+	background-color: rgba(0,0,0,0.7);
+	padding: 12px 8px 16px 8px;
+	text-align: left;
+	font-size: 12px;
+	font-family: 'Verdana', 'Arial', sans-serif;
+	color: #ccc;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.7);
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+
+	.sitemarks-title {
+		font-weight: normal;
+		color: #ccc;
+		font-size: 16px;
+
+		a {
+			font-size: 12px;
+			color: #ccc;
+			text-decoration: none;
+		}
+
+		.title-close-button {
+			float: right;
+			cursor: pointer;
+		}
+	}
+
+	.add-this-page {
+		background-color: #0078e7;
+		border-radius: 2px;
+		width: 100%;
+		display: inline-block;
+		zoom: 1;
+		white-space: nowrap;
+		vertical-align: baseline;
+		text-align: center;
+		cursor: pointer;
+		font-family: 'Verdana', 'Arial', sans-serif;
+		font-size: 14px;
+		line-height: 28px;
+		color: #fff;
+		border: 0;
+		margin: 12px 0;
+		text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	}
 }

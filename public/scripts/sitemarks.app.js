@@ -17,79 +17,47 @@
 		return;
 	}
 
-	var oContainer = o('<div>').attr({
-		id: containerId
-	}).css({
-		position: 'fixed',
-		top: 0,
-		left: '10px',
-		width: '200px',
-		zIndex: '9999',
-		backgroundColor: 'rgba(0,0,0,0.7)',
-		padding: '12px 8px 16px 8px',
-		textAlign: 'left',
-		fontSize: '12px',
-		fontFamily: 'Verdana, Arial, sans-serif',
-		color: '#ccc',
-		borderBottomLeftRadius: '2px',
-		borderBottomRightRadius: '2px',
-		boxShadow: '0 0 10px rgba(0,0,0,0.7)',
-		textShadow: '1px 1px 1px rgba(0,0,0,0.5)'
-	});
+	var oContainer = o('<div>')
+		.attr({
+			id: containerId
+		});
 
-	var oTitle = o('<div>').css({
-		fontWeight: 'normal',
-		color: '#ccc',
-		fontSize: '16px'
-	}).text(listTitle);
+	var oTitle = o('<div>')
+		.attr({
+			class: 'sitemarks-title'
+		})
+		.text(listTitle);
 
-	var oLagr = o('<a>').css({
-		fontSize: '12px',
-		color: '#ccc',
-		textDecoration: 'none'
-	}).attr({
-		href: 'http://lagr.se'
-	}).text(' from lagr.se');
+	var oLagr = o('<a>')
+		.attr({
+			href: 'http://lagr.se'
+		}).text(' from lagr.se');
 
 
-	var oClose = o('<a>').css({
-		float: 'right',
-		cursor: 'pointer'
-	}).text('X')
-	.click(function (event) {
-		event.preventDefault();
-		oContainer.css({display: 'none'});
-	});
+	var oClose = o('<a>')
+		.attr({
+			class: 'title-close-button'
+		})
+		.text('X')
+		.click(function (event) {
+			event.preventDefault();
+			oContainer.css({ display: 'none' });
+		});
 
-	var oBtn = o('<button>').css({
-		backgroundColor: '#0078e7',
-		borderRadius: '2px',
-		width: '100%',
-		display: 'inline-block',
-		zoom: 1,
-		whiteSpace: 'nowrap',
-		verticalAlign: 'baseline',
-		textAlign: 'center',
-		cursor: 'pointer',
-		fontFamily: 'Verdana, Arial, sans-serif',
-		fontSize: '14px',
-		lineHeight: '28px',
-		color: '#fff',
-		border: 0,
-		margin: '12px 0',
-		textShadow: '1px 1px 1px rgba(0,0,0,0.5)'
-	}).text('Add this page')
-	.click(function (event) {
-		event.preventDefault();
-		var item, data, ul;
-		item = {
-			url: window.location.href,
-			title: getCurrentTitle(),
-			dateAdded: getFormattedDate()
-		};
-		addItem(item);
-		refreshItemList();
-	});
+	var oBtn = o('<button>')
+		.attr({ class: 'add-this-page' })
+		.text('Add this page')
+		.click(function (event) {
+			event.preventDefault();
+			var item, data, ul;
+			item = {
+				url: window.location.href,
+				title: getCurrentTitle(),
+				dateAdded: getFormattedDate()
+			};
+			addItem(item);
+			refreshItemList();
+		});
 
 	oTitle.append(oLagr);
 	oTitle.append(oClose);
