@@ -3,7 +3,8 @@
 	'use strict';
 
 	var ns = 'SiteMarks',
-		containerId = ns.toLowerCase() + '-container',
+		nsId = ns.toLowerCase(),
+		containerId = nsId + '-container',
 		listTitle = 'SiteMarks',
 		existingC;
 
@@ -78,56 +79,39 @@
 	function listBuilder(items) {
 		if (!items.length) return undefined;
 
-		var oU = o('<ul>').css({
-					maxHeight: '350px',
-		overflow: 'auto',
-			margin: 0,
-			padding: 0,
-			listStyleType: 'none'
-		}).attr({
-			id: ns
-		});
+		var oU = o('<ul>')
+			.attr({
+				id: nsId
+			});
 
 		var oLi, oRemove, oA;
 		items.sort(itemSortByTitle);
 		items.forEach(function (i) {
-			oLi = o('<li>').css({
-				overflow: 'hidden',
-				lineHeight: '18px',
-				margin: '0',
-				padding: '3px 0',
-				borderBottom: '1px solid rgba(255,255,255,0.3)',
-				textAlign: 'left'
-			});
+			oLi = o('<li>');
+			oRemove = o('<a>')
+				.attr({
+					href: i.url,
+					title: 'Delete this item',
+					class: 'item-remove'
+				})
+				.text('x')
+				.click(function (event) {
+					event.preventDefault();
+					var data = storage.getFromStorage();
+					storage.removeItemFromData(data, { url: event.target.href });
+					storage.addToStorage(data);
+					refreshItemList();
+				});
 
-			oRemove = o('<a>').css({
-				color: '#fff',
-				borderRadius: '2px',
-				fontSize: '10px',
-				padding: '2px 3px',
-				backgroundColor: 'rgb(202, 60, 60)',
-				textDecoration: 'none'
-			}).attr({
-				href: i.url,
-				title: 'Delete this item'
-			}).text('x')
-			.click(function (event) {
-				event.preventDefault();
-				var data = storage.getFromStorage();
-				storage.removeItemFromData(data, { url: event.target.href });
-				storage.addToStorage(data);
-				refreshItemList();
-			});
-
-			var dateAdded = 'Added: ';
+			var dateAdded = 'Date added: ';
 			dateAdded += (i.dateAdded) ? i.dateAdded : 'unknown';
-			oA = o('<a>').css({
-				color: '#ccc',
-				textDecoration: 'none'
-			}).attr({
-				href: i.url,
-				title: dateAdded
-			}).text(' ' + i.title);
+			oA = o('<a>')
+				.attr({
+					href: i.url,
+					title: dateAdded,
+					class: 'item-link'
+				})
+				.text(' ' + i.title);
 
 			oLi.append(oRemove);
 			oLi.append(oA);
@@ -139,7 +123,7 @@
 
 	function refreshItemList () {
 		var data, ul;
-		removeElementById(ns);
+		removeElementById(nsId);
 		data = storage.getFromStorage();
 		ul = listBuilder(data.items);
 		if (ul) oContainer.append(ul);
