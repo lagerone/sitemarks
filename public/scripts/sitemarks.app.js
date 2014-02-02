@@ -3,7 +3,7 @@
 	'use strict';
 
 	var ns = 'SiteMarks',
-		containerId = ns + 'container',
+		containerId = ns.toLowerCase() + '-container',
 		listTitle = 'SiteMarks',
 		existingC;
 

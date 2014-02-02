@@ -41,6 +41,7 @@ http.createServer(function(request, response) {
 function getContentType (filename) {
   var t = getFileType(filename);
   if (t === 'js') return 'application/javascript';
+  if (t === 'css') return 'text/css';
   if (t === 'html' || t.indexOf('\\') !== -1 || t.indexOf('/') !== -1) return 'text/html';
   return 'text/plain';
 }
