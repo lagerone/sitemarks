@@ -11,18 +11,15 @@
 	<script>
 		(function sitemarksWrapper () {
 
-			appendFile('css/sitemarks.min.css', 'sitemarks-styles', 'css');
-
-			appendFile('scripts/sitemarks.app.js', 'sitemarks-app', 'js');
-
-			// appendFile('build/sitemarks.merged.js', 'sitemarks-app-build', 'js');
+			// appendFile('css/sitemarks.min.css', 'sitemarks-styles', 'css');
+			// appendFile('scripts/sitemarks.app.js', 'sitemarks-app', 'js');
+			appendFile('build/sitemarks.merged.js', 'sitemarks-app-build', 'js');
 
 			function appendFile (src, id, type) {
-				var s,
-					create = {
+				var create = {
 						js: function () {
 							var s = document.createElement('script');
-							//s.async = true;
+							s.async = true;
 							s.src = src;
 							s.id = id;
 							return s;
@@ -33,17 +30,18 @@
 							ss.rel = 'stylesheet';
 							ss.href = src;
 							ss.id = id;
-							return ss;					
+							return ss;
 						}
 					},
-					existing = document.getElementById(id);
+					existing = document.getElementById(id),
+					el;
 				if (existing) {
 					return;
 				}
 				if (!create.hasOwnProperty(type)) {
 					throw new Error('Unsupported type: ' + type);
 				}
-				var el = create[type]();
+				el = create[type]();
 				document.getElementsByTagName('head')[0].appendChild(el);
 			}
 		}());

@@ -76,15 +76,14 @@
 	var body = document.getElementsByTagName('body')[0];
 	body.appendChild(oContainer.element);
 
-	function listBuilder(items) {
-		if (!items.length) return undefined;
+	function listBuilder (items) {
+		if (!items.length) {
+			return undefined;
+		}
 
-		var oU = o('<ul>')
-			.attr({
-				id: nsId
-			});
+		var oU = o('<ul>').attr({ id: nsId }),
+			oLi, oRemove, oA;
 
-		var oLi, oRemove, oA;
 		items.sort(itemSortByTitle);
 		items.forEach(function (i) {
 			oLi = o('<li>');
@@ -150,11 +149,15 @@
 
 	function getFormattedDate () {
 		var d = new Date(),
-			month = d.getMonth()+1 + '';
+			month = d.getMonth() + 1 + '',
+			day = d.getDate() + '';
 		if (month.length === 1) {
 			month = '0' + month;
 		}
-		return [d.getFullYear(), month, d.getDate()].join('-');
+		if (day.length === 1) {
+			day = '0' + day;
+		}
+		return [d.getFullYear(), month, day].join('-');
 	}
 
 	function itemSortByTitle (a, b) {
@@ -162,7 +165,6 @@
 			return 1;
 		if (a.title < b.title)
 			return -1;
-		// a must be equal to b
 		return 0;
 	}
 

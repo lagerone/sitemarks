@@ -1,22 +1,25 @@
+fs = require('fs');
+
 module.exports = function(grunt) {
 
 	var config = {};
 
 	config.jshint = {
-		all: ['Gruntfile.js', 'scripts/*.js']
+		all: ['Gruntfile.js', 'src/*.js']
 	};
 	config.uglify = {
 		all: {
 			files: {
-				'build/sitemarks.merged.js': ['scripts/sitemarks.storage.js', 'scripts/sitemarks.oink.js', 'scripts/sitemarks.app.js']
+				'build/sitemarks.built.js': ['src/sitemarks.storage.js', 'src/sitemarks.oink.js', 'src/sitemarks.app.js'],
+				'build/sitemarks.loader.min.js': ['src/sitemarks.loader.js']
 			}
 		}
 	};
 	config.jasmine = {
 		all: {
-			src: ['scripts/sitemarks.storage.js', 'scripts/sitemarks.oink.js'],
+			src: ['src/sitemarks.storage.js', 'src/sitemarks.oink.js'],
 			options: {
-				specs: 'scripts/*.spec.js'
+				specs: 'src/*.spec.js'
 			}
 		}
 	};
@@ -35,6 +38,21 @@ module.exports = function(grunt) {
 		files: 'css/*.less',
 		tasks: ['less']
 	};
+	config.template = {
+		'sitemarksPage' : {
+			options : {
+				data : function(){
+					var code = fs.readFileSync('build/sitemarks.loader.min.js','ascii').trim();
+					return {
+						code: code
+					};
+				}
+			},
+			files : {
+				'sitemarks.html' : ['sitemarks.html.tpl']
+			}
+		}
+	};
 
 	grunt.initConfig(config);
 
@@ -43,7 +61,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-template');
+
+	grunt.registerTask('sitemarks', 'build sitemarks', ['template:sitemarksPage']);
 
 	grunt.registerTask('dev','watch');
-	grunt.registerTask('default', ['jshint', 'uglify', 'jasmine']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'sitemarks']);
 };

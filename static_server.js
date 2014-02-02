@@ -15,7 +15,7 @@ http.createServer(function(request, response) {
       response.writeHead(404, {"Content-Type": "text/plain"});
       response.write("404 Not Found\n");
       response.end();
-    return;
+      return;
   }
  
   if ( fs.statSync(filename).isDirectory() ) filename += 'index.html';
