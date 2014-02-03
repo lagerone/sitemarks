@@ -1,12 +1,13 @@
 var http = require("http"),
-  url = require("url"),
-  path = require("path"),
-  fs = require("fs"),
-  port = process.argv[2] || 8888;
+    url = require("url"),
+    path = require("path"),
+    fs = require("fs"),
+    port = process.argv[2] || 8888,
+    siteDir = '/build';
  
 http.createServer(function(request, response) {
  
-  var uri = '/public' + url.parse(request.url).pathname,
+  var uri = siteDir + url.parse(request.url).pathname,
     filename = path.join(process.cwd(), uri),
     contentType = getContentType(filename);
 

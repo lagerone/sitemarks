@@ -1,0 +1,20 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lagerone/sitemarks",
+  "authors": [
+    "Daniel lager <daniel.lager@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "twitter": "~3.1.0",
+    "github-fork-ribbon-css": "~0.1.0"
+  }
+}

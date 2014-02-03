@@ -30,16 +30,12 @@ module.exports = function(grunt) {
 				compress: true
 			},
 			files: {
-				'css/sitemarks.min.css': 'css/sitemarks.less'
+				'styles/sitemarks.min.css': 'styles/sitemarks.less'
 			}
 		}
 	};
-	config.watch = {
-		files: 'css/*.less',
-		tasks: ['less']
-	};
 	config.template = {
-		'sitemarksPage' : {
+		'sitemarksDemoPage' : {
 			options : {
 				data : function(){
 					var code = fs.readFileSync('build/sitemarks.loader.min.js','ascii').trim();
@@ -49,11 +45,14 @@ module.exports = function(grunt) {
 				}
 			},
 			files : {
-				'sitemarks.html' : ['sitemarks.html.tpl']
+				'build/index.html' : ['index.html.tpl']
 			}
 		}
 	};
-
+	config.watch = {
+		files: ['css/*.less', 'index.html.tpl'],
+		tasks: ['less', 'demoPage']
+	};
 	grunt.initConfig(config);
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -63,8 +62,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-template');
 
-	grunt.registerTask('sitemarks', 'build sitemarks', ['template:sitemarksPage']);
+	grunt.registerTask('demoPage', 'build demo page', ['template:sitemarksDemoPage']);
 
 	grunt.registerTask('dev','watch');
-	grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'sitemarks']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'demoPage']);
 };
