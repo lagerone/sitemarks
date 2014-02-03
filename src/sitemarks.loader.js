@@ -1,5 +1,5 @@
 (function sitemarksWrapper () {
-	var appRoot = 'https://github.com/lagerone/sitemarks/tree/master/build/',
+	var appRoot = 'https://lagerone.github.io/sitemarks/',
 		appjs;
 	appendFile(appRoot + 'build/sitemarks.min.css', 'css', 'sitemarks-styles');
 	appjs = appendFile(appRoot + 'build/sitemarks.built.js', 'js', 'sitemarks-app-build');

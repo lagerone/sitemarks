@@ -3,7 +3,7 @@ var http = require("http"),
     path = require("path"),
     fs = require("fs"),
     port = process.argv[2] || 8888,
-    siteDir = '/build';
+    siteDir = '/';
  
 http.createServer(function(request, response) {
  
@@ -49,6 +49,7 @@ function getContentType (filename) {
 
 function getFileType (filename) {
   var f = filename.split('.');
+  console.log(f[f.length - 1]);
   return f[f.length - 1];
 }
 
