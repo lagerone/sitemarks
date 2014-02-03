@@ -1,9 +1,12 @@
 (function sitemarksWrapper () {
 
-	appendFile('css/sitemarks.min.css', 'sitemarks-styles', 'css');
-	appendFile('build/sitemarks.merged.js', 'sitemarks-app-build', 'js');
+	appendFile('css/sitemarks.min.css', 'css', 'sitemarks-styles');
+	var appjs = appendFile('build/sitemarks.built.js', 'js', 'sitemarks-app-build');
+	if (!appjs) {
+		window.sitemarks.app.init();
+	}
 
-	function appendFile (src, id, type) {
+	function appendFile (src, type, id) {
 		var create = {
 				js: function () {
 					var s = document.createElement('script');
@@ -31,6 +34,6 @@
 		}
 		el = create[type]();
 		document.getElementsByTagName('head')[0].appendChild(el);
-		true;
+		return true;
 	}
 }());

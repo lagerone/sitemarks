@@ -1,4 +1,4 @@
-window.sitemarks = {};
+window.sitemarks = window.sitemarks || {};
 
 window.sitemarks.storage = (function (window, undefined) {
 	var ns = 'sitemarks-lagr.se';

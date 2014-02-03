@@ -1,4 +1,6 @@
-(function (window, storage, o, undefined) {
+window.sitemarks = window.sitemarks || {};
+
+window.sitemarks.app = (function (window, storage, o, undefined) {
 
 	'use strict';
 
@@ -6,75 +8,84 @@
 		nsId = ns.toLowerCase(),
 		containerId = nsId + '-container',
 		listTitle = 'SiteMarks',
-		existingC;
+		existingC,
+		oContainer;
 
-	existingC = document.getElementById(containerId);
-	if (existingC) {
-		if (existingC.style.display === 'none') {
-			existingC.style.display = 'block';
-		} else {
-			existingC.style.display = 'none';
+	var init = function () {
+		existingC = document.getElementById(containerId);
+		if (existingC) {
+			if (existingC.style.display === 'none') {
+				existingC.style.display = 'block';
+			} else {
+				existingC.style.display = 'none';
+			}
+			return;
 		}
-		return;
-	}
 
-	var oContainer = o('<div>')
-		.attr({
-			id: containerId
-		});
+		oContainer = o('<div>')
+			.attr({
+				id: containerId
+			});
 
-	var oTitle = o('<div>')
-		.attr({
-			class: 'sitemarks-title'
-		})
-		.text(listTitle);
+		var oTitle = o('<div>')
+			.attr({
+				class: 'sitemarks-title'
+			})
+			.text(listTitle);
 
-	var oLagr = o('<a>')
-		.attr({
-			href: 'http://lagr.se'
-		}).text(' from lagr.se');
+		var oLagr = o('<a>')
+			.attr({
+				href: 'http://lagr.se'
+			}).text(' from lagr.se');
 
 
-	var oClose = o('<a>')
-		.attr({
-			class: 'title-close-button'
-		})
-		.text('X')
-		.click(function (event) {
-			event.preventDefault();
-			oContainer.css({ display: 'none' });
-		});
+		var oClose = o('<a>')
+			.attr({
+				class: 'title-close-button'
+			})
+			.text('X')
+			.click(function (event) {
+				event.preventDefault();
+				oContainer.css({ display: 'none' });
+			});
 
-	var oBtn = o('<button>')
-		.attr({ class: 'add-this-page' })
-		.text('Add this page')
-		.click(function (event) {
-			event.preventDefault();
-			var item, data, ul;
-			item = {
-				url: window.location.href,
-				title: getCurrentTitle(),
-				dateAdded: getFormattedDate()
-			};
-			addItem(item);
-			refreshItemList();
-		});
+		var oBtn = o('<button>')
+			.attr({ class: 'add-this-page' })
+			.text('Add this page')
+			.click(function (event) {
+				event.preventDefault();
+				var item, data, ul;
+				item = {
+					url: window.location.href,
+					title: getCurrentTitle(),
+					dateAdded: getFormattedDate()
+				};
+				addItem(item);
+				refreshItemList();
+			});
 
-	oTitle.append(oLagr);
-	oTitle.append(oClose);
-	oContainer.append(oTitle);
-	oContainer.append(oBtn);
+		oTitle.append(oLagr);
+		oTitle.append(oClose);
+		oContainer.append(oTitle);
+		oContainer.append(oBtn);
 
-	var data = storage.getFromStorage(),
-		list;
+		var data = storage.getFromStorage(),
+			list;
 
-	if (data.items.length) {
-		list = listBuilder(data.items);
-		oContainer.append(list);
-	}
+		if (data.items.length) {
+			list = listBuilder(data.items);
+			oContainer.append(list);
+		}
 
-	var body = document.getElementsByTagName('body')[0];
-	body.appendChild(oContainer.element);
+		var body = document.getElementsByTagName('body')[0];
+		body.appendChild(oContainer.element);
+	};
+
+	init();
+
+	return {
+		init: init
+	};
 
 	function listBuilder (items) {
 		if (!items.length) {
