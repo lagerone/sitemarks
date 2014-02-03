@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 				}
 			},
 			files : {
-				'build/index.html' : ['index.html.tpl']
+				'index.html' : ['index.html.tpl']
 			}
 		}
 	};
