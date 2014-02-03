@@ -1,7 +1,7 @@
 (function sitemarksWrapper () {
 
-	appendFile('css/sitemarks.min.css', 'css', 'sitemarks-styles');
-	var appjs = appendFile('build/sitemarks.built.js', 'js', 'sitemarks-app-build');
+	appendFile('sitemarks.min.css', 'css', 'sitemarks-styles');
+	var appjs = appendFile('sitemarks.built.js', 'js', 'sitemarks-app-build');
 	if (!appjs) {
 		window.sitemarks.app.init();
 	}
