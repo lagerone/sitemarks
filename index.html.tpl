@@ -28,7 +28,7 @@
 	<body>
 		<div class="github-fork-ribbon-wrapper right">
 			<div class="github-fork-ribbon">
-				<a href="https://github.com/simonwhitaker/github-fork-ribbon-css">Fork me on GitHub</a>
+				<a href="https://github.com/lagerone/sitemarks">Fork me on GitHub</a>
 			</div>
 		</div>
 		<div class="container jumbotron">
@@ -39,7 +39,7 @@
 						<p>SiteMarks is a bookmarklet that lets you persistantly store links to pages from sites you browse on the web.</p>
 						<p>Stored SiteMarks will only appear in the SiteMarks UI once you browse the site from which the links are added.</p>
 						<p>Install the bookmarklet by dragging the button to your browser toolbar.</p>
-						<a class="btn btn-primary btn-lg btn-block" href='javascript:void<%= code %>'>SiteMarks bookmarklet<a/>
+						<a class="btn btn-primary btn-lg btn-block" href='javascript:void<%= code %>'>SiteMarks<a/>
 					</div>
 				</div>
 			</div>

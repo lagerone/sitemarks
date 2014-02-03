@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 				compress: true
 			},
 			files: {
-				'styles/sitemarks.min.css': 'styles/sitemarks.less'
+				'build/sitemarks.min.css': 'src/sitemarks.less'
 			}
 		}
 	};
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 		}
 	};
 	config.watch = {
-		files: ['css/*.less', 'index.html.tpl'],
+		files: ['src/*', 'index.html.tpl'],
 		tasks: ['less', 'demoPage']
 	};
 	grunt.initConfig(config);
@@ -65,5 +65,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('demoPage', 'build demo page', ['template:sitemarksDemoPage']);
 
 	grunt.registerTask('dev','watch');
-	grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'demoPage']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'demoPage', 'less']);
 };
