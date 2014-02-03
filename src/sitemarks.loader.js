@@ -1,7 +1,8 @@
 (function sitemarksWrapper () {
-
-	appendFile('build/sitemarks.min.css', 'css', 'sitemarks-styles');
-	var appjs = appendFile('build/sitemarks.built.js', 'js', 'sitemarks-app-build');
+	var appRoot = 'http://lagerone.github.io/sitemarks/',
+		appjs;
+	appendFile(appRoot + 'build/sitemarks.min.css', 'css', 'sitemarks-styles');
+	appjs = appendFile(appRoot + 'build/sitemarks.built.js', 'js', 'sitemarks-app-build');
 	if (!appjs) {
 		window.sitemarks.app.init();
 	}
