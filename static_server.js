@@ -49,7 +49,6 @@ function getContentType (filename) {
 
 function getFileType (filename) {
   var f = filename.split('.');
-  console.log(f[f.length - 1]);
   return f[f.length - 1];
 }
 

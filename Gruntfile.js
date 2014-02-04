@@ -4,6 +4,22 @@ module.exports = function(grunt) {
 
 	var config = {};
 
+/*
+	var	sitemarksStyles = grunt.file.read('build/sitemarks.min.css');
+	config.banner = '// <%= sitemarksStyles %>';
+	config.usebanner = {
+		dist: {
+			options: {
+				position: 'top',
+				banner: '// <%= sitemarksStyles %>',
+				linebreak: true
+			},
+			files: {
+				src: ['src/sitemarks.loader.js']
+			}
+		}
+	};
+*/
 	config.jshint = {
 		all: ['Gruntfile.js', 'src/*.js']
 	};
@@ -53,6 +69,7 @@ module.exports = function(grunt) {
 		files: ['src/*', 'index.html.tpl'],
 		tasks: ['less', 'demoPage']
 	};
+
 	grunt.initConfig(config);
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -61,9 +78,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-template');
+	grunt.loadNpmTasks('grunt-banner');
 
 	grunt.registerTask('demoPage', 'build demo page', ['template:sitemarksDemoPage']);
 
 	grunt.registerTask('dev','watch');
-	grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'demoPage', 'less']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'less', 'demoPage']);
 };
